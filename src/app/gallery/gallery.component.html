@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="carousel vertical slide" style="float: left">
+    <div class="carousel-inner" role="listbox">
+      <div *ngFor="let image of images">
+        <img height="100" width="100" src="{{image}}" (click)="onSelect(image)">
+      </div>
+    </div>
+  </div>
+  <div style="float: left; height: 300px; width: 500px; colour: #fff;">
+    <ng-template #content let-c="close" let-d="dismiss">
+      <div class="modal-body">
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <img src="{{selectedImage}}"/>
+      </div>
+    </ng-template>
+
+    <img class="mh-100" src="{{selectedImage}}" (click)="open(content)">
+  </div>
+</div>
