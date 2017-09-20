@@ -1,21 +1,40 @@
 <div class="container">
-  <div class="carousel vertical slide" style="float: left">
-    <div class="carousel-inner" role="listbox">
-      <div *ngFor="let image of images">
-        <img height="100" width="100" src="{{image}}" (click)="onSelect(image)">
-      </div>
-    </div>
-  </div>
-  <div style="float: left; height: 300px; width: 500px; colour: #fff;">
-    <ng-template #content let-c="close" let-d="dismiss">
-      <div class="modal-body">
-        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <img src="{{selectedImage}}"/>
-      </div>
-    </ng-template>
+  <div class="row pt-2">
+    <div class="col-sm-2"> </div>
+    <div class="col-2" style="text-align: center;">
+            <span style="margin: auto" (click)="onNext('up')">
+        <i class="fa fa-angle-up fa-3x" aria-hidden="true"></i>
+      </span>
 
-    <img class="mh-100" src="{{selectedImage}}" (click)="open(content)">
+
+      <div *ngFor="let image of images; let i = index">
+        <img src="{{image}}" (click)="onSelect(image)" [ngClass]="{'unselected-image':selectedIndex !== i}" />
+      </div>
+
+      <span style="width: 100px;" (click)="onNext('down')">
+        <i class="fa fa-angle-down fa-3x" aria-hidden="true"></i>
+      </span>
+    </div>
+
+    <div class="col-sm-6 pt-4 gallery-btn">
+      <div class="zoom-box" (click)="open(content)">
+        <i class="fa fa-search fa-2x" aria-hidden="true"></i>
+      </div>
+      <ng-template #content let-c="close">
+        <ngb-carousel  activeId="{{selectedIndex}}">
+          <ng-template *ngFor="let ib of bigImages; let i=index" ngbSlide id="{{i}}">
+            <img class="modal-image" src="{{ib}}">
+          </ng-template>
+        </ngb-carousel>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-light btn-close" (click)="c('Close click')">Close</button>
+        </div>
+
+      </ng-template>
+
+      <img src="{{selectedImage}}" (click)="open(content)">
+    </div>
+    <div class="col-2"></div>
   </div>
 </div>

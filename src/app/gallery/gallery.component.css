@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+
+.btn-close{
+  background-color: black;
+}
+.modal-image{
+  max-width: 100%;
+}
+
+.unselected-image{
+  opacity: 0.2;
+}
+
+
+.gallery-btn {
+  mix-width: 450px;
+  max-width: 490px;
+}
+.zoom-box {
+  width: 32px;
+  height: 32px;
+  line-height: 40px;
+  position: absolute;
+  right: 20px;
+  bottom: 95px;
+  text-align: center;
+  background-color: #eeeeee;
+
+}
+
